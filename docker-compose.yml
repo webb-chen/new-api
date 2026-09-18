@@ -16,8 +16,8 @@ version: '3.4' # For compatibility with older Docker versions
 
 services:
   webb-api:
+    build: .
     image: webb-api:local
-    pull_policy: never
     container_name: webb-api
     restart: always
     command: --log-dir /app/logs
