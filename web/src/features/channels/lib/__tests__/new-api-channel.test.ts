@@ -36,7 +36,7 @@ import { getChannelTypeIcon, getKeyPromptForType } from '../channel-utils'
 function newAPIForm(baseUrl: string) {
   return {
     ...CHANNEL_FORM_DEFAULT_VALUES,
-    name: 'New API upstream',
+    name: 'Webb API upstream',
     type: CHANNEL_TYPE_NEW_API,
     base_url: baseUrl,
     key: 'test-key',
@@ -44,7 +44,7 @@ function newAPIForm(baseUrl: string) {
   }
 }
 
-describe('New API channel', () => {
+describe('Webb API channel', () => {
   test('registers selection, ordering, model discovery, and icon metadata', () => {
     const option = CHANNEL_TYPE_OPTIONS.find(
       (item) => item.value === CHANNEL_TYPE_NEW_API
@@ -52,7 +52,7 @@ describe('New API channel', () => {
 
     expect(option).toEqual({
       value: CHANNEL_TYPE_NEW_API,
-      label: 'New API',
+      label: 'Webb API',
     })
     expect(
       CHANNEL_TYPE_OPTIONS.findIndex(

@@ -163,16 +163,6 @@ export function HeaderNavigationSection({
       title: t('Console'),
       description: t('User dashboard and quota controls.'),
     },
-    {
-      key: 'docs',
-      title: t('Docs'),
-      description: t('Documentation or external knowledge base.'),
-    },
-    {
-      key: 'about',
-      title: t('About'),
-      description: t('Static page describing the platform.'),
-    },
   ]
 
   const accessModules: Array<{

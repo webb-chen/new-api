@@ -48,7 +48,7 @@ function EmptyAboutState() {
         </div>
         <div className='space-y-4 text-sm'>
           <p>
-            {t('New API Project Repository:')}{' '}
+            {t('Webb API Project Repository:')}{' '}
             <a
               href='https://github.com/QuantumNous/new-api'
               target='_blank'
@@ -65,7 +65,7 @@ function EmptyAboutState() {
               rel='noopener noreferrer'
               className='text-primary hover:underline'
             >
-              {t('NewAPI')}
+              {t('WebbAPI')}
             </a>{' '}
             © {currentYear}{' '}
             <a
