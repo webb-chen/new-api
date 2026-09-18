@@ -1,4 +1,4 @@
-# New-API Docker Compose Configuration
+# webb-API Docker Compose Configuration
 # 
 # Quick Start:
 #   1. docker-compose up -d
@@ -28,9 +28,9 @@ services:
       - ./logs:/app/logs
     environment:
       - SQL_DSN=postgresql://root:123456@webbapi-postgres:5432/webb-api # ⚠️ IMPORTANT: Change the password in production!
-#      - SQL_DSN=root:123456@tcp(mysql:3306)/new-api  # Point to the mysql service, uncomment if using MySQL
-#      - LOG_SQL_DSN=postgresql://root:123456@postgres:5432/new-api-log # OPTIONAL: If you want a separate database for logging, uncomment and set this
-#      - LOG_SQL_DSN=clickhouse://default:123456@clickhouse:9000/new_api_logs # OPTIONAL: Use ClickHouse for logs only; also uncomment clickhouse in depends_on and the clickhouse service below
+#      - SQL_DSN=root:123456@tcp(mysql:3306)/webb-api  # Point to the mysql service, uncomment if using MySQL
+#      - LOG_SQL_DSN=postgresql://root:123456@postgres:5432/webb-api-log # OPTIONAL: If you want a separate database for logging, uncomment and set this
+#      - LOG_SQL_DSN=clickhouse://default:123456@clickhouse:9000/webb_api_logs # OPTIONAL: Use ClickHouse for logs only; also uncomment clickhouse in depends_on and the clickhouse service below
 #      - LOG_SQL_CLICKHOUSE_TTL_DAYS=0 # OPTIONAL: ClickHouse log retention days. Unset or 0 disables automatic deletion; set to e.g. 30 to keep 30 days
       - REDIS_CONN_STRING=redis://:123456@webbapi-redis:6379 # ⚠️ IMPORTANT: Change the password in production!
       - TZ=Asia/Shanghai
@@ -97,7 +97,7 @@ services:
 #    restart: always
 #    environment:
 #      MYSQL_ROOT_PASSWORD: 123456  # ⚠️ IMPORTANT: Change this password in production!
-#      MYSQL_DATABASE: new-api
+#      MYSQL_DATABASE: webb-api
 #    volumes:
 #      - mysql_data:/var/lib/mysql
 #    networks:
@@ -110,7 +110,7 @@ services:
 #    container_name: clickhouse
 #    restart: always
 #    environment:
-#      CLICKHOUSE_DB: new_api_logs
+#      CLICKHOUSE_DB: webb_api_logs
 #      CLICKHOUSE_USER: default
 #      CLICKHOUSE_PASSWORD: 123456  # ⚠️ IMPORTANT: Change this password in production!
 #      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
