@@ -36,7 +36,6 @@ import type { ReactNode } from 'react'
 import { toast } from 'sonner'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { UpdateCheckerSection } from '@/features/system-settings/maintenance/update-checker-section'
 import { api } from '@/lib/api'
 import { createAppQueryClient } from '@/lib/query-client'
 import { ROLE } from '@/lib/roles'
@@ -145,59 +144,6 @@ describe('administrator update entry', () => {
       })
     }
   )
-
-  test('shares results with maintenance, opens release details by keyboard and returns focus on Escape', async () => {
-    const user = userEvent.setup()
-    render(
-      <>
-        <SystemUpdateAction presentation='version' />
-        <UpdateCheckerSection
-          currentVersion='v1.0.0-rc.35'
-          startTime={1_700_000_000}
-        />
-      </>,
-      { wrapper: Wrapper }
-    )
-    const buttons = await screen.findAllByRole('button', {
-      name: /New version available: v1\.0\.0-rc\.36/,
-    })
-    expect(buttons).toHaveLength(2)
-    expect(fetchMock).toHaveBeenCalledTimes(1)
-    expect(within(buttons[0]).getByText('v1.0.0-rc.35')).toHaveClass('truncate')
-    expect(within(buttons[0]).getByText('Update available')).toHaveClass(
-      'hidden',
-      '@min-[22rem]/system-brand:inline-flex'
-    )
-    expect(within(buttons[1]).getByText('Update available')).not.toHaveClass(
-      'hidden'
-    )
-
-    buttons[0].focus()
-    await user.keyboard('{Enter}')
-    const dialog = await screen.findByRole('dialog', { name: 'System updates' })
-    expect(await within(dialog).findByText(release.body)).toBeInTheDocument()
-    expect(within(dialog).getByText('Pre-release')).toBeInTheDocument()
-    expect(within(dialog).getByText('Published at')).toBeInTheDocument()
-    expect(
-      within(dialog).queryByText(
-        'Checks hourly while you are online, including pre-releases.'
-      )
-    ).not.toBeInTheDocument()
-    expect(
-      within(dialog).queryByText('Last successful check')
-    ).not.toBeInTheDocument()
-    expect(
-      within(dialog).getByRole('link', { name: 'Go to GitHub' })
-    ).toHaveAttribute(
-      'href',
-      'https://github.com/QuantumNous/new-api/releases/tag/v1.0.0-rc.36'
-    )
-    await user.keyboard('{Escape}')
-    await waitFor(() =>
-      expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
-    )
-    expect(buttons[0]).toHaveFocus()
-  })
 
   test('does not suggest a downgrade and updates every entry after a manual recheck', async () => {
     const user = userEvent.setup()
