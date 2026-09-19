@@ -182,7 +182,6 @@ export const STATIC_I18N_KEYS = [
   'Console',
   'Model Square',
   'Rankings',
-  'Docs',
   'About',
 
   // Sidebar views (drill-in workspaces)
